@@ -31,7 +31,7 @@ class ProfileController extends AppController{
 	    $this->redirect(array('controller' => 'profile','action' => 'index'));
 	}
 	else{
-	    $this->data = $this->Post->read(null,$id);
+	    $this->data = $this->Profile->read(null,$id);
 	}
     }
     public function delete($id = null){
