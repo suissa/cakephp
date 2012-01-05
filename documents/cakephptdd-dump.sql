@@ -9,17 +9,17 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `profile`;
+DROP TABLE IF EXISTS `profiles`;
 
-CREATE TABLE `profile` (
+CREATE TABLE `profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
@@ -27,5 +27,5 @@ CREATE TABLE `user` (
   `dt_created` datetime NOT NULL,
   `profile_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (profile_id) REFERENCES profile(id) 
+  FOREIGN KEY (profile_id) REFERENCES profiles(id) 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
