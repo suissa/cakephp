@@ -11,6 +11,23 @@ class ProfileControllerTest extends ControllerTestCase{
       )  
      );
      $results = $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+     
+     //teste BOOL
+     $data = array(
+      'Profile' => array(
+       'name' => (bool)TRUE
+      )  
+     );
+     $results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+     
+     //teste INT
+     $data = array(
+      'Profile' => array(
+       'name' => (int)1
+      )  
+     );
+     $results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+     
      debug($results);   
     }
     public function testUpdate(){

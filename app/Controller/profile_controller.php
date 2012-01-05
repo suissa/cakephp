@@ -9,11 +9,17 @@ class ProfileController extends AppController{
     }
 
     public function create(){
+	var_dump($this->data);
+	die();
 	if($this->data){
-	    if($this->Profile->save($this->data))
-		$this->Session->setFlash('Cadastrado com sucesso!');
-	    $this->data = array();
+	    if(is_string($this->data["Profile"]["name"])){
+		if($this->Profile->save($this->data))
+		    $this->Session->setFlash('Cadastrado com sucesso!');
+		$this->data = array();
+	    }
 	}
+	else
+	    die("fuuuu");
     }
     
     public function retrieve(){
