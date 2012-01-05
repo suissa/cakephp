@@ -1,21 +1,20 @@
 <?
-class PerfilControllerTest extends ControllerTestCase{
+class ProfileControllerTest extends ControllerTestCase{
  public function testIndex(){
-     $results = $this->testAction('perfil/index/');
+     $results = $this->testAction('profile/index/');
      debug($results);
     }
     public function testCreate(){
      $data = array(
-      'Post' => array(
-       'titulo' => 'titulo',
-       'texto' => 'Lorem ipsum dolor sit amet, consectetur dipisicin'
+      'Profile' => array(
+       'name' => 'admin'
       )  
      );
-     $results = $this->testAction('posts/add',array('data' => $data,'method' => 'post'));
+     $results = $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
      debug($results);   
     }
     public function testUpdate(){
-     $results1 = $this->testAction('posts/edit/1');
+     $results1 = $this->testAction('profile/update/1');
      debug($results1);
 
      $data = array(
@@ -25,12 +24,12 @@ class PerfilControllerTest extends ControllerTestCase{
        'texto' => 'teste de update do texto'
       )
      );  
-     $results2 = $this->testAction('posts/edit',array('data' => $data,'method' => 'post'));
+     $results2 = $this->testAction('profile/update',array('data' => $data,'method' => 'post'));
      debug($results2);
     }
     
     public function testDelete(){
-     $results = $this->testAction('posts/delete/1');
+     $results = $this->testAction('profile/delete/1');
      debug($results);
     }
     
