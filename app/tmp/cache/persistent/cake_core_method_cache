@@ -1,2 +1,0 @@
-1325854179
-a:2:{s:4:"name";a:7:{i:4094993065;s:12:"`cakephptdd`";i:1837561428;s:10:"`profiles`";i:936975580;s:14:"`Profile`.`id`";i:2689315505;s:16:"`Profile`.`name`";i:699460827;s:9:"`Profile`";i:161042810;s:6:"`name`";i:2609997277;s:7:"`count`";}s:6:"fields";a:2:{s:32:"55abca59e3edbc5e584e356bdd4785b7";a:2:{i:0;s:14:"`Profile`.`id`";i:1;s:16:"`Profile`.`name`";}s:32:"903fab84a84754c55ffa2c98ecda1b16";a:1:{i:0;s:19:"COUNT(*) AS `count`";}}}
