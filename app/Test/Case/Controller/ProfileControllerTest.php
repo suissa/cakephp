@@ -5,30 +5,36 @@ class ProfileControllerTest extends ControllerTestCase{
      debug($results);
     }
     public function testCreate(){
-     $data = array(
-      'Profile' => array(
-       'name' => 'admin'
-      )  
-     );
-     $results = $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-     
-     //teste BOOL
-     $data = array(
-      'Profile' => array(
-       'name' => (bool)TRUE
-      )  
-     );
-     $results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-     
-     //teste INT
-     $data = array(
-      'Profile' => array(
-       'name' => (int)1
-      )  
-     );
-     $results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-     
-     debug($results);   
+	$name = "admin";
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results = $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name string");
+	
+	//teste BOOL
+	$name = (bool)true;
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name com bool");
+
+	//teste INT
+	$name = (int)1;
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
+	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name int");
+
+	debug($results);   
     }
     public function testUpdate(){
      $results1 = $this->testAction('profile/update/1');

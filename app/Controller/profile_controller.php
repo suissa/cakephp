@@ -44,10 +44,13 @@ class ProfileController extends AppController{
 	}
     }
     public function delete($id = null){
-	if($id){
+	if(is_int($id)){
 	    if($this->Profile->delete($id))
 		$this->Session->setFlash('Deletado com sucesso!');
 	    $this->redirect(array('controller' => 'profile','action' => 'index'));
+	}
+	elseif(is_string($id)){
+	    //criar funcao de deletar pelo valor do name
 	}
     }
     
