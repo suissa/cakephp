@@ -47,7 +47,8 @@ class ProfileControllerTest extends ControllerTestCase{
     public function testUpdate(){
      $results1 = $this->testAction('profile/update/1');
      debug($results1);
-
+     
+     
      $data = array(
       'Post' => array(
        'id' => 1,
