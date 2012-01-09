@@ -2,11 +2,4 @@
 .project
 .settings/
 
-/app/tmp/*
-
-app/tmp/cache/models/cake_model_default_cakephptdd_list
-app/tmp/cache/models/cake_model_default_users
-app/tmp/cache/persistent/cake_core_cake_dev_pt-br
-app/tmp/cache/persistent/cake_core_file_map
-app/tmp/cache/persistent/cake_core_method_cache
-
+app/tmp/
