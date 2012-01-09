@@ -17,5 +17,4 @@
             $this->assertEqual($result, $expected);
         }
     }
-    ?>    
-
+    ?>
