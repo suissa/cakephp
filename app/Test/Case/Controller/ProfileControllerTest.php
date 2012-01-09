@@ -4,6 +4,35 @@ class ProfileControllerTest extends ControllerTestCase{
      $results = $this->testAction('profile/index/');
      debug($results);
     }
+    public function testNameString(){
+	$name = "admin";
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results = $this->assertEqual(is_string($name), true, "Teste de tipagem do campo name como string");
+	debug($results);
+    }
+    public function testNameInteger(){
+	$name = (int)1;
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do campo name como integer");
+    }
+    public function testNameBoolean(){
+	$name = (bool)true;
+	$data = array(
+	    'Profile' => array(
+		'name' => $name
+	    )  
+	);
+	$results = $this->assertEqual(is_string($name), true, "Teste de tipagem do campo name como boolean");
+	debug($results);
+    }
     public function testCreate(){
 	$name = "admin";
 	$data = array(
@@ -12,34 +41,14 @@ class ProfileControllerTest extends ControllerTestCase{
 	    )  
 	);
 	$results = $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name string");
 	
-	//teste BOOL
-	$name = (bool)true;
-	$data = array(
-	    'Profile' => array(
-		'name' => $name
-	    )  
-	);
-	$results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name com bool");
-
-	//teste INT
-	$name = (int)1;
-	$data = array(
-	    'Profile' => array(
-		'name' => $name
-	    )  
-	);
-	$results .= $this->testAction('profile/create',array('data' => $data,'method' => 'post'));
-	$results .= $this->assertEqual(is_string($name), true, "Teste de tipagem do name int");
-
 	debug($results);   
     }
     public function testUpdate(){
      $results1 = $this->testAction('profile/update/1');
      debug($results1);
-
+     
+     
      $data = array(
       'Post' => array(
        'id' => 1,
