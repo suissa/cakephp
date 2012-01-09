@@ -4,3 +4,4 @@
 
 /app/tmp/cache/persistent/cake_*
 /app/tmp/logs/*.log
+/tmp/
