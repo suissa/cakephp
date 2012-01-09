@@ -2,10 +2,10 @@
 .project
 .settings/
 
-/app/tmp/cache/persistent/cake_*
-/app/tmp/logs/*.log
-/tmp/
-/app/tmp/cache/
-/app/tmp/logs/
-/app/tmp/sessions/
-/app/tmp/tests/
+tmp/cache/persistent/cake_*
+tmp/logs/*.log
+tmp/
+tmp/cache/
+tmp/logs/
+tmp/sessions/
+tmp/tests/
