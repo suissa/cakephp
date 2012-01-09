@@ -1,5 +1,6 @@
 <?
 class UserControllerTest extends ControllerTestCase{
+	var $scaffold;
  public function testIndex(){
      $results = $this->testAction('user/index/');
      debug($results);
