@@ -5,3 +5,7 @@
 /app/tmp/cache/persistent/cake_*
 /app/tmp/logs/*.log
 /tmp/
+/app/tmp/cache/
+/app/tmp/logs/
+/app/tmp/sessions/
+/app/tmp/tests/
