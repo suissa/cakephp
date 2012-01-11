@@ -3,7 +3,11 @@ class UserController extends AppController{
  
     public $name = 'Users';
     var $scaffold;
-
+function beforeRender(){
+    $this->viewVars['scaffoldFields'] = array(
+        'login','pass', 'email'
+    );
+}
     /*
     public function beforeFilter() {
     	parent::beforeFilter();
