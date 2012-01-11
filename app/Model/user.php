@@ -2,6 +2,7 @@
 class User extends AppModel {
     var $name = 'User';
     var $displayField = 'first_name';
+    
     var $validate = array(
         'login' => array(
             'alphanumeric' => array(
@@ -25,5 +26,12 @@ class User extends AppModel {
             'allowEmpty' => true
         )
     );
+    
+    public function beforeSave() {
+    	if (isset($this->data[$this->alias]['pass'])) {
+    		$this->data[$this->alias]['pass'] = AuthComponent::password($this->data[$this->alias]['pass']);
+    	}
+    	return true;
+    }
 }
 ?>

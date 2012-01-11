@@ -2,6 +2,23 @@
 class UserController extends AppController{
  
     public $name = 'User';
+    
+    public function beforeFilter() {
+    	parent::beforeFilter();
+    	$this->Auth->allow('create');
+    }
+    
+    public function login() {
+    	if ($this->Auth->login()) {
+    		$this->redirect($this->Auth->redirect());
+    	} else {
+    		$this->Session->setFlash(__('usuário ou senha inválida, tente de novo'));
+    	}
+    }
+    
+    public function logout() {
+    	$this->redirect($this->Auth->logout());
+    }
  
     public function index(){
 	$posts = $this->User->find('all');
