@@ -2,10 +2,7 @@
 class ProfileController extends AppController{
  
     public $name = 'Profile'; 
-    public $scaffold = 'Profile';
-    public function index() {
-
-	}
+    var $scaffold;
 //    public function index(){
 //	$posts = $this->Profile->find('all');
 //	$this->set(compact('profile'));
