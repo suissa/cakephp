@@ -1,12 +1,16 @@
 <?
 class UserController extends AppController{
  
-    public $name = 'User';
-    
+    public $name = 'Users';
+    var $scaffold;
+
+    /*
     public function beforeFilter() {
     	parent::beforeFilter();
     	$this->Auth->allow('create');
     }
+    
+    
     
     public function login() {
     	if ($this->Auth->login()) {
@@ -24,6 +28,7 @@ class UserController extends AppController{
 	$posts = $this->User->find('all');
 	$this->set(compact('user'));
     }
+    
 
     public function create(){
 	$field = $this->data[$this->name];
@@ -59,7 +64,8 @@ class UserController extends AppController{
 	    $this->data = $this->User->read(null,$id);
 	}
     }
+    */
+    
    
     
 }
-?>

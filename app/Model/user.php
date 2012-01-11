@@ -1,7 +1,7 @@
 <?
 class User extends AppModel {
     var $name = 'User';
-    var $displayField = 'first_name';
+	var $displayField = 'login';
     
     var $validate = array(
         'login' => array(
@@ -34,4 +34,4 @@ class User extends AppModel {
     	return true;
     }
 }
-?>
+
