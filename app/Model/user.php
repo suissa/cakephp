@@ -1,8 +1,6 @@
 <?
 class User extends AppModel {
     var $name = 'User';
-	var $displayField = 'login';
-    
     var $validate = array(
         'login' => array(
             'alphanumeric' => array(
@@ -20,7 +18,6 @@ class User extends AppModel {
             'message' => 'Mínimo de 8 caracteres'
         ),
         'email' => 'email');
-        
-
+    
 }
 
