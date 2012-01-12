@@ -1,75 +1,19 @@
-<?
-class UserController extends AppController{
- 
-    public $name = 'Users';
-    var $scaffold;
-function beforeRender(){
-    $this->viewVars['scaffoldFields'] = array(
-        'login','pass', 'email'
-    );
-}
-    /*
-    public function beforeFilter() {
-    	parent::beforeFilter();
-    	$this->Auth->allow('create');
-    }
-    
-    
-    
-    public function login() {
-    	if ($this->Auth->login()) {
-    		$this->redirect($this->Auth->redirect());
-    	} else {
-    		$this->Session->setFlash(__('usuário ou senha inválida, tente de novo'));
-    	}
-    }
-    
-    public function logout() {
-    	$this->redirect($this->Auth->logout());
-    }
- 
-    public function index(){
-	$posts = $this->User->find('all');
-	$this->set(compact('user'));
-    }
-    
+<?php
 
-    public function create(){
-	$field = $this->data[$this->name];
+class UserController extends AppController {
+	
+	var $helpers = array ('Html','Form');
+	var $name = 'User';
 
-	if($this->data){
-	    if(is_string($field["login"])){
-		if($this->User->save($this->data))
-		    $this->Session->setFlash('Cadastrado com sucesso!');
-		$this->data = array();
-	    }	
-	    else{
-		    $this->Session->setFlash('ERROR!');
-		
-	    }
+	function index() {
+		$this->set('users', $this->User->find('all'));
 	}
-    }
-    
-    public function retrieve(){
-     if($this->data){
-      if($this->User->save($this->data))
-       $this->Session->setFlash('Cadastrado com sucesso!');
-      $this->data = array();
-     }
-    }
-    
-    public function update($id = null){
-	if($this->data){
-	    if($this->User->save($this->data))
-		$this->Session->setFlash('Editado com sucesso!');
-	    $this->redirect(array('controller' => 'user','action' => 'index'));
+	
+	function view($id = null) {
+		$this->User->id = $id;   
+		$this->set('users', $this->User->read());
 	}
-	else{
-	    $this->data = $this->User->read(null,$id);
-	}
-    }
-    */
-    
-   
-    
 }
+?>
+
+    
