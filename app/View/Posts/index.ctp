@@ -5,6 +5,8 @@
 		<th>Título</th>
 		<th>Created</th>
 	</tr>
+	
+	<?php echo $this->Html->link('Add Comentário', array('controller' => 'posts', 'action' => 'add')); ?>
 
 	<?php foreach ($posts as $post): ?>
 	<tr>
