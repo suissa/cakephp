@@ -5,6 +5,8 @@
 		<th>login</th>
 		
 	</tr>
+	
+	<?php echo $this->Html->link('Add Usuário', array('controller' => 'user', 'action' => 'add')); ?>
 
 	<?php foreach ($users as $user): ?>
 	<tr>

@@ -19,5 +19,7 @@ class User extends AppModel {
         ),
         'email' => 'email');
     
+    
+    
 }
 
