@@ -10,21 +10,23 @@ class ProfileController extends AppController{
 //	$this->set(compact('profile'));
     }
 
-    public function create(){
-	$field = $this->data[$this->name];
+    public function save(){
+	//$field = $this->data[$this->name];
 //	var_dump(is_string($field["name"]));
 //	die();
 	if($this->data){
-	    if(is_string($field["name"])){
+	   // if(is_string($field["name"])){
 		if($this->Profile->save($this->data))
 		    $this->Session->setFlash('Cadastrado com sucesso!');
 		$this->data = array();
-	    }	
-	    else{
-		    $this->Session->setFlash('ERROR!');
-		
-	    }
+	    //}	
+//	    else{
+//		    $this->Session->setFlash('ERROR!');
+//		
+//	    }
 	}
+	
+        $this->redirect(array('controller' => 'profile', 'action' => 'index'));
     }
     
     function view($id = null) {
