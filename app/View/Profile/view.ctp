@@ -1,5 +1,26 @@
 <?php 
 
+echo $this->Html->script('yepnope.js');
+
+?>
+<script type="text/javascript"> 
+yepnope({
+    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
+    callback: function (url, result, key) {
+	if (!window.jQuery) yepnope(<?php echo JS; ?>'jquery.min.js');
+
+    },
+    complete: function() {
+	$ = jQuery;
+	//Coloque seu code jQuery aqui!!!!
+	$(document).ready(function() {
+	    alert('Holy moda focas ass');
+	});
+    }
+});   
+    
+</script>
+<?php 
 $__controller = "profile";
 $__action = "save";
 
@@ -7,21 +28,13 @@ if(isset($result)):
     echo "<h1>".$result['Profile']['id']." - ".$result['Profile']['name']."</h1>";
 endif; ?>
 
-<form action="<?php echo $this->Html->url(array('controller' => '$__controller','action' => $__action), true);?>" method="post" class="form_cadastro">
-    
-	<ul>
-	    <li>
-		<label for="name">Nome:</label>
-		<input type="" name="name" />
-	    </li>
-	    <li>
-		<input type="submit" value="enviar" />
-	    </li>
-	    
-	</ul>
-</form>
 
-<?php if(isset($results)): ?>
+
+<?php 
+
+//$this->extend('form.ctp');
+
+if(isset($results)): ?>
 <table>
 	<tr>
 		<th>Id</th>
