@@ -31,7 +31,12 @@ class ProfileController extends AppController{
     
     function view($id = null) {
 	$this->Profile->id = $id;   
-	$this->set('result', $this->Profile->read());
+	if($this->Profile->id){
+	    $this->set('result', $this->Profile->read());
+	}
+	else{	    
+	$this->set('results', $this->Profile->find('all'));
+	}
     }
     
     public function update($id = null){
