@@ -1,6 +1,8 @@
 <?php if(isset($result)):
-    echo "<h1>".$result['Profile']['name']."</h1>";
+    echo "<h1>".$result['Profile']['id']." - ".$result['Profile']['name']."</h1>";
 endif; ?>
+
+<?php if(isset($results)): ?>
 <table>
 	<tr>
 		<th>Id</th>
@@ -17,3 +19,4 @@ endif; ?>
 	<?php endforeach; ?>
 
 </table>
+<?php endif; ?>
