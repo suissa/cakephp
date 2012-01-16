@@ -1,8 +1,10 @@
 <?php
-	if($session->check('Message.flash')) $session->flash();
-	if($session->check('Message.auth')) $session->flash('auth');
-	echo $form->create('User', array('action' => 'login'));
-	echo $form->input('login');
-	echo $form->input('pass');
-	echo $form->end('Entrar');
+
+echo $this->Session->flash('auth');
+echo $this->Session->flash();
+echo $this->Form->create('User', array('action' => 'login'));
+echo $this->Form->input('email');
+echo $this->Form->input('pass', array('type' => 'password'));
+echo $this->Form->end('Entrar');
+
 ?>

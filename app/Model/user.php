@@ -1,6 +1,8 @@
 <?
 class User extends AppModel {
     var $name = 'User';
+    public $displayField = 'login';
+    
     var $validate = array(
         'login' => array(
             'alphanumeric' => array(

@@ -1,13 +1,7 @@
-<?php 
+<h1>Users</h1>
 
-$__controller = "user";
-$__action = "save";
 
-if(isset($result)):
-    echo "<h1>".$result['User']['id']." - ".$result['User']['login']."</h1>";
-endif; ?>
-
-<form action="<?php echo $this->Html->url(array('controller' => '$__controller','action' => $__action), true);?>" method="post" class="form_cadastro">
+<form action="./save/" method="post" id="form_cadastro">
     
 	<ul>
 	    <li>
@@ -21,7 +15,6 @@ endif; ?>
 	</ul>
 </form>
 
-<?php if(isset($results)): ?>
 <table>
 	<tr>
 		<th>Id</th>
@@ -38,4 +31,3 @@ endif; ?>
 	<?php endforeach; ?>
 
 </table>
-<?php endif; ?>

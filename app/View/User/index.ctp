@@ -1,20 +1,32 @@
-<h1>Usuários</h1>
+<h1>User</h1>
+
+
+<form action="./save/" method="post" id="form_cadastro">
+    
+	<ul>
+	    <li>
+		<label for="name">Nome:</label>
+		<input type="" name="name" />
+	    </li>
+	    <li>
+		<input type="submit" value="enviar" />
+	    </li>
+	    
+	</ul>
+</form>
+
 <table>
 	<tr>
 		<th>Id</th>
-		<th>login</th>
-		
+		<th>User</th>
 	</tr>
-	
-	<?php echo $this->Html->link('Add Usuário', array('controller' => 'user', 'action' => 'add')); ?>
 
-	<?php foreach ($users as $user): ?>
+	<?php foreach ($results as $result): ?>
 	<tr>
-		<td><?php echo $user['User']['id']; ?></td>
+		<td><?php echo $result['User']['id']; ?></td>
 		<td>
-			<?php echo $this->Html->link($user['User']['login'], array('controller' => 'user', 'action' => 'view', $user['User']['id'])); ?>
+			<?php echo $this->Html->link($result['User']['login'], array('controller' => 'user', 'action' => 'view', $result['User']['id'])); ?>
 		</td>
-		
 	</tr>
 	<?php endforeach; ?>
 
