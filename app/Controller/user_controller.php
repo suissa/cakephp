@@ -2,15 +2,14 @@
 class UserController extends AppController{
 		
     public $name = 'User'; 
-    
+          
     public function login() {
     }
     
     public function logout() {
-    	// Redireciona o usuário para o action do logoutRedirect
     	$this->redirect($this->Auth->logout());
     }
-    
+        
     public function index(){	
 		$this->set('results', $this->User->find('all'));
 	

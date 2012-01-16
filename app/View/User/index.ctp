@@ -1,6 +1,5 @@
 <h1>User</h1>
 
-
 <form action="./save/" method="post" id="form_cadastro">
     
 	<ul>
@@ -9,9 +8,12 @@
 		<input type="" name="name" />
 	    </li>
 	    <li>
-		<input type="submit" value="enviar" />
+		<label for="name">Email:</label>
+		<input type="" name="email" />
 	    </li>
-	    
+	    <li>
+		<input type="submit" value="enviar" />
+	    </li>	    
 	</ul>
 </form>
 
@@ -19,6 +21,7 @@
 	<tr>
 		<th>Id</th>
 		<th>User</th>
+		<th>Email</th>
 	</tr>
 
 	<?php foreach ($results as $result): ?>
@@ -27,6 +30,7 @@
 		<td>
 			<?php echo $this->Html->link($result['User']['login'], array('controller' => 'user', 'action' => 'view', $result['User']['id'])); ?>
 		</td>
+		<td><?php echo $result['User']['email']; ?></td>
 	</tr>
 	<?php endforeach; ?>
 

@@ -15,6 +15,10 @@ endif; ?>
 		<input type="" name="login" />
 	    </li>
 	    <li>
+		<label for="name">Email:</label>
+		<input type="" name="email" />
+	    </li>
+	    <li>
 		<input type="submit" value="enviar" />
 	    </li>
 	    
@@ -34,6 +38,7 @@ endif; ?>
 		<td>
 			<?php echo $this->Html->link($result['User']['login'], array('controller' => 'user', 'action' => 'view', $result['User']['id'])); ?>
 		</td>
+		<td><?php echo $result['User']['email']; ?></td>
 	</tr>
 	<?php endforeach; ?>
 
