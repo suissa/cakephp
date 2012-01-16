@@ -1,6 +1,25 @@
-<?php if(isset($result)):
+<?php 
+
+$__controller = "profile";
+$__action = "save";
+
+if(isset($result)):
     echo "<h1>".$result['Profile']['id']." - ".$result['Profile']['name']."</h1>";
 endif; ?>
+
+<form action="<?php echo $this->Html->url(array('controller' => '$__controller','action' => $__action), true);?>" method="post" class="form_cadastro">
+    
+	<ul>
+	    <li>
+		<label for="name">Nome:</label>
+		<input type="" name="name" />
+	    </li>
+	    <li>
+		<input type="submit" value="enviar" />
+	    </li>
+	    
+	</ul>
+</form>
 
 <?php if(isset($results)): ?>
 <table>

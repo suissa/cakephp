@@ -35,7 +35,7 @@ class ProfileController extends AppController{
 	    $this->set('result', $this->Profile->read());
 	}
 	else{	    
-	$this->set('results', $this->Profile->find('all'));
+	    $this->set('results', $this->Profile->find('all'));
 	}
     }
     
