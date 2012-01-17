@@ -1,8 +1,9 @@
 <?
 class ProfileController extends AppController{
  
-    public $name = 'Profile'; 
-//    var $scaffold;
+    public $name = 'Profile';     
+    public $ext;
+    
     public function index(){
 //	$posts = $this->Profile->find('all');
 	
@@ -37,6 +38,7 @@ class ProfileController extends AppController{
 	else{	    
 	    $this->set('results', $this->Profile->find('all'));
 	}
+	$this->render('view.php');
     }
     
     public function update($id = null){
