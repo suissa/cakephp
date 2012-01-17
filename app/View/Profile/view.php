@@ -17,29 +17,46 @@ yepnope({
 	$ = jQuery;
 	//Coloque seu code jQuery aqui!!!!
 	$(document).ready(function() {
-	    $("[type='submit']").click(function(e){
+	    $("[type='button']").click(function(e){
 		
-		var action = $("#form_cadastro").attr("action");
-		var method = $("#form_cadastro").attr("method").toLowerCase();
-		var data = $(this).parents("form").serialize(); //para GET
+		var form = $(this).parents("form").attr("id");
+		var $form = $("#"+form);
+		var action = $form.attr("action");
+		var method = $form.attr("method").toLowerCase();
+		var data = $form.serialize(); 
+		var dataArr = $form.serializeArray(); 
 		
 		var $lista = $("#listagem");
-		
-		if(method == 'post'){
-		    var name = $("[name='name']").val();
-		}
+//		console.log();
+//		e.preventDefault();
+//		return false;
+//		if(method == 'post'){
+//		    var name = $("[name='name']").val();
+//		}
+		/*
+		 * Caso deseje mostrar os dados sem consulta-los,
+		 * guarde em vars seus valores que foram enviados.
+		 * 
+		 * var dataArr: guarda um array de objetos com o 
+		 * o nome e o valor de cada campo, logo é só seguir
+		 * a sequencia dos campos.
+		 */
 		    
 		$.ajax({
 		    url: action,
 		    context: document.body,
 		    type: method,
 		    data: data,
-		    success: function(result){
-			if(result == 1){
-			    alert("YES");
-			    var html = "<tr><td>ide</td><td>"+name+"</td></tr>";
+		    success: function(id){
+			if(id > 0){
+				
+			    var name = dataArr[0].value;
+			    var html = "<tr><td>"+id+"</td><td>"+name+"</td></tr>";
 			    $lista.children("tbody").prepend(html);
-			    console.log($lista, html);
+			    console.log(id);
+			}
+			else {
+			    alert("Zicou!");
 			}
 		    }
 		});
@@ -68,7 +85,7 @@ endif; ?>
 		<input type="text" name="name" />
 	    </li>
 	    <li>
-		<input type="submit" value="enviar" />
+		<input type="button" value="enviar" />
 	    </li>
 	    
 	</ul>

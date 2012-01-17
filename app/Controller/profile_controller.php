@@ -28,7 +28,7 @@ class ProfileController extends AppController{
 	if($this->RequestHandler->isAjax()){
 	    $this->autoRender = false;		
 	    $this->layout = 'ajax';
-	    return ($this->Profile->save($this->data)) ? 1 : 0;
+	    return ($this->Profile->save($this->data)) ? $this->Profile->getLastInsertID() : 0;
 		
 	}else{
 	    if($this->data){
