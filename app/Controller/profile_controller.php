@@ -22,9 +22,7 @@ class ProfileController extends AppController{
     
     
     public function save(){
-	//$field = $this->data[$this->name];
-//	var_dump(is_string($field["name"]));
-//	die();
+	//$id = $this->data["id"];
 	if($this->RequestHandler->isAjax()){
 	    $this->autoRender = false;		
 	    $this->layout = 'ajax';
@@ -50,7 +48,7 @@ class ProfileController extends AppController{
     function view($id = null) {
 	$this->Profile->id = $id;   
 	if($this->Profile->id){
-	    $this->set('result', $this->Profile->read());
+	    $this->set('results', $this->Profile->read());
 	}
 	else{	    
 	    $this->set('results', $this->Profile->find('all'));
