@@ -3,13 +3,34 @@ class UserController extends AppController{
 		
     public $name = 'User'; 
           
-    public function login() {
-    }
-    
-    public function logout() {
-    	$this->redirect($this->Auth->logout());
-    }
+    function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('signup');
         
+        parent::beforeFilter();
+        $this->Auth->allow('display');
+    }
+
+    public function signup()
+    {
+        if ($this->request->is('post'))
+        {
+            $this->User->create();
+
+            if ($this->User->save($this->request->data))
+            {
+                $this->Session->setFlash(__('Sua conta foi criada'));
+                $this->Auth->login($this->request->data);
+                return $this->redirect($this->Auth->redirect());
+            } else
+            {
+                $this->Session->setFlash(__('Sua conta não pode ser salva'));
+            }
+        }
+    }
+
+ /*       
     public function index(){	
 		$this->set('results', $this->User->find('all'));
 	
@@ -56,6 +77,8 @@ class UserController extends AppController{
 	    //criar funcao de deletar pelo valor do name
 	}
     }
+    
+    */
     
 }
 ?>
