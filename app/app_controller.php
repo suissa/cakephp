@@ -3,7 +3,8 @@ class AppController extends Controller
 {
 
     var $components = array('Auth','Session');
-	var $current_user = false;
+    var $current_user = false;
+    var $ext  = '.php';
 
     function beforeFilter()
     {

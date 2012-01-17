@@ -14,7 +14,7 @@ yepnope({
 	$ = jQuery;
 	//Coloque seu code jQuery aqui!!!!
 	$(document).ready(function() {
-	    alert('Holy moda focas ass');
+	    //alert('Holy moda focas ass');
 	});
     }
 });   
@@ -31,8 +31,7 @@ endif; ?>
 
 
 <?php 
-
-//$this->extend('form.ctp');
+//$this->extend('/View/Profile/form.ctp');
 
 if(isset($results)): ?>
 <table>
