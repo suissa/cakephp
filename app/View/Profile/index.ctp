@@ -1,7 +1,5 @@
 <?php 
-
 echo $this->Html->script('yepnope.js');
-
 ?>
 <script type="text/javascript"> 
 var baseUrl = '<?php echo Router::url('/', true) ?>';
@@ -17,8 +15,18 @@ yepnope({
 	$ = jQuery;
 	//Coloque seu code jQuery aqui!!!!
 	$(document).ready(function() {
+	    //Variáveis do ambiente
+	    //Variáveis de elementos
+	    var $form = $("#form_cadastro");
+	    var $listagem = $("#listagem");
+	    //Variáveis de tipos
+	    var typeSubmit = "[type='submit']";
+	    var reset = "[type='reset']";
+	    //Variaveis com os nomes dos elementos do form
+	    var nameName = "[name='name']";
+	    
 	    //Método para inserir registros
-	    $("form").on('click', "[type='submit']", function(e){		
+	    $form.on('click', typeSubmit, function(e){		
 		var form = $(this).parents("form").attr("id");
 		var $form = $("#"+form);
 		var action = $form.attr("action");
@@ -67,14 +75,38 @@ yepnope({
 		});
 		e.preventDefault();
 		return false;
-	    }); //fim click
+	    }); //fim form submit
 	    
 	    //Método para buscar um registro
-//	    $("#listagem a").
+	    $listagem.on('click', 'a', function(e){
+		var $a = $(this);
+		var $button = $form.find(typeSubmit).end();
+		
+		var newButtonVal = "Salvar";
+		//var oldButtonVal = $button.val();
+		
+		var text = $a.text();
+		var href = $a.attr("href");
+		var hrefArr = href.split("/");
+		var id = hrefArr[hrefArr.length-1];
+		
+		var inputID = createInput("hidden", "id", id);
+		//var inputHidden = createInput("hidden", "id", );
+//		var href = $a.attr("href");
+//		$button.val(newButtonVal);
+		$form.find(nameName).val(text);
+		$form.find(typeSubmit).val(newButtonVal);
+		$form.append(inputID);
+		
+		e.preventDefault();
+		return false;
+	    });//fim #listagem a
 	});
     }
 });   
-    
+var createInput= function(type, name, value){    
+    return "<input type='"+type+"' name='"+name+"' value='"+value+"' />";
+}    
 </script>
 <?php 
 $__controller = "profile";
@@ -94,7 +126,8 @@ $__action = "save";
 		<input type="text" name="name" />
 	    </li>
 	    <li>
-		<input type="submit" value="enviar" />
+		<input type="reset" value="Limpar" />
+		<input type="submit" value="Inserir" />
 	    </li>
 	    
 	</ul>
