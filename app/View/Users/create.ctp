@@ -3,8 +3,8 @@ echo $this->Form->create('User', array(
     'url' => array('controller'=>'sessions','action' => 'create')
 ));
 
-    echo $this->Form->input('login', array(
-        'label' => __('Login', true),
+    echo $this->Form->input('username', array(
+        'label' => __('Username', true),
         'error' => array(
             'name-not-empty-rule'       => __("Você deve informar um login",true)
         )

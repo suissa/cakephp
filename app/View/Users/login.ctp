@@ -1,11 +1,11 @@
 <div class="user">
-<?php echo $form->create('User', array('action' => 'login'));?>
+<?php echo $this->Form->create('User', array('action' => 'login')); ?>
 	<fieldset>
  		<legend>User Login</legend>
 	<?php
-		echo $form->input('login');
-		echo $form->input('pass');
+		echo $this->Form->input('username');
+		echo $this->Form->input('password');
 	?>
 	</fieldset>
-<?php echo $form->end('Sign In');?>
+<?php echo $this->Form->end('Entrar'); ?>
 </div>
