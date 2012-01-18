@@ -1,5 +1,7 @@
 <?php 
 $__controller = "profiles";
+$__model = (isset($result)) ? key($result) : "Profile";
+
 echo $this->Html->script('yepnope.js');
 ?>
 <script type="text/javascript"> 
@@ -153,25 +155,28 @@ $__action = "save";
 
 <?php 
 $__actionView = "view";
+$__actionEdit = "edit";
+$__actionDelete = "delete";
 /*
  * Caso o retorno seja apenas um registro,
  * coloco-o em um array para entrar no foreach.
  */
 $results = (count($results)===1) ? array($results) : $results;
+
 if(isset($results)): ?>
 <table id="listagem">
+    <tr>
+	<th>Id</th>
+	<th>Profile</th>
+	<th>Alterar</th>
+	<th>Deletar</th>
+    </tr>
+    <tbody>
+    <?php foreach ($results as $result): ?>
 	<tr>
-	    <th>Id</th>
-	    <th>Profile</th>
-	    <th>Alterar</th>
-	    <th>Deletar</th>
-	</tr>
-	<tbody>
-	<?php foreach ($results as $result): ?>
-	<tr>
-	    <td><?php echo $result['Profile']['id']; ?></td>
+	    <td><?php echo $result[$__model]['id']; ?></td>
 	    <td>
-		    <?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
+		    <?php echo $this->Html->link($result[$__model]['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
 	    </td>
 	<td>
 	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id'])); ?>
@@ -180,7 +185,7 @@ if(isset($results)): ?>
 	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id'])); ?>
 	</td>
 	</tr>
-	<?php endforeach; ?>
-	</tbody>
+    <?php endforeach; ?>
+    </tbody>
 </table>
 <?php endif; ?>
