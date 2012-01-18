@@ -1,16 +1,9 @@
 <?php 
-//Edit depende da var $result
-if(isset($result)){
-    $__controller = "profiles";
-    $__model = (isset($result)) ? key($result) : "";
-    
-//    Inserção do yepnope para carregar js e css assincronamente
-    echo $this->Html->script('yepnope.js');
+echo $this->Html->script('yepnope.js');
 ?>
 <script type="text/javascript"> 
-//variavel que armazena o caminho até o projeto
 var baseUrl = '<?php echo Router::url('/', true) ?>';
-var __controller = "profiles";
+var __controller = "profile";
 //
 //yepnope({
 //    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
@@ -131,20 +124,25 @@ var createInput= function(type, name, value){
 }    
 </script>
 <?php 
+$__controller = "profiles";
 $__action = "save";
+
+//if(isset($result)):
+//    echo "<h1>".$result['Profile']['id']." - ".$result['Profile']['name']."</h1>";
+//endif; 
 ?>
 
 
 <form action="<?php echo $this->Html->url(array('controller' => $__controller,'action' => $__action), true);?>" method="post" id="form_cadastro">
-    <input type="hidden" name="id" value="<?php echo $result[$__model]["id"];  ?>" />
+    
 	<ul>
 	    <li>
 		<label for="name">Nome:</label>
-		<input type="text" name="name" value="<?php echo $result[$__model]["name"];  ?>" />
+		<input type="text" name="name" />
 	    </li>
 	    <li>
 		<input type="reset" value="Limpar" />
-		<input type="submit" value="Salvar" />
+		<input type="submit" value="Inserir" />
 	    </li>
 	    
 	</ul>
@@ -155,27 +153,34 @@ $__actionView = "view";
 $__actionEdit = "edit";
 $__actionDelete = "delete";
 
-    ?>
+/*
+ * Caso o retorno seja apenas um registro,
+ * coloco-o em um array para entrar no foreach.
+ */
+$results = (count($results)===1) ? array($results) : $results;
+if(isset($results)): ?>
 <table id="listagem">
-    <tr>
-	<th>Id</th>
-	<th>Profile</th>
-	<th>Alterar</th>
-	<th>Deletar</th>
-    </tr>
-    <tbody>
-    <tr>
-	<td><?php echo $result[$__model]['id']; ?></td>
-	<td>
-	    <?php echo $this->Html->link($result[$__model]['name'], array('controller' => $__controller, 'action' => $__actionView, $result[$__model]['id'])); ?>
-	</td>
-	<td>
-	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id'])); ?>
-	</td>
-	<td>
-	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id']), null, 'Tem certeza disso?' ); ?>
-	</td>
-    </tr>
-    </tbody>
+	<tr>
+		<th>Id</th>
+		<th>Profile</th>
+		<th>Alterar</th>
+		<th>Deletar</th>
+	</tr>
+	<tbody>
+	<?php foreach ($results as $result): ?>
+	<tr>
+		<td><?php echo $result['Profile']['id']; ?></td>
+		<td>
+		    <?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
+		</td>
+		<td>
+		    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result['Profile']['id'])); ?>
+		</td>
+		<td>
+		    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result['Profile']['id'])); ?>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	</tbody>
 </table>
-<?php }//fim if result ?>
+<?php endif; ?>

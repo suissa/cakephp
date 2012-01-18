@@ -7,8 +7,7 @@ echo $this->Html->script('yepnope.js');
 <script type="text/javascript"> 
 var baseUrl = '<?php echo Router::url('/', true) ?>';
 var __controller = "profiles";
-//var d = new Date();
-// console.log(d.getMinutes()+":"+d.getSeconds());
+//console.profile('yepnope load callback');
 yepnope({
     load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
     callback: function (url, result, key) {
@@ -17,8 +16,7 @@ yepnope({
 	}
     },
     complete: function() {
-//var d = new Date();
-// console.log(d.getMinutes()+":"+d.getSeconds());
+//console.profileEnd('yepnope load callback');
 	$ = jQuery;
 	//Coloque seu code jQuery aqui!!!!
 	$(document).ready(function() {
@@ -103,11 +101,8 @@ yepnope({
 
 		var newButtonVal = "Salvar";
 		//var oldButtonVal = $button.val();
-
-		var text = $a.text();
-		var href = $a.attr("href");
-		var hrefArr = href.split("/");
-		var id = hrefArr[hrefArr.length-1];
+		
+		var id = getIdUrl(href);
 
 		var inputID = createInput("hidden", "id", id);
 		//var inputHidden = createInput("hidden", "id", );
@@ -120,11 +115,45 @@ yepnope({
 		e.preventDefault();
 		return false;
 	    });//fim #listagem a
+	    
+	    //Método que gerencia as ações nos links
+	    $listagem.on('click', '.action', function(e){
+		e.preventDefault();
+		alert($(this).text().toLowerCase());
+		
+		var action = $(this).text().toLowerCase(),
+		    $a = $(this),
+		    id = getIdUrl($a),
+		    inputID = createInput("hidden", "id", id)
+		;
+		
+		switch(action){
+		    case "alterar":
+			
+			$form.find(nameName).val(text);
+			$form.find(typeSubmit).val(newButtonVal);
+			$form.append(inputID);
+
+			break;
+		    case "deletar":
+			alert();
+			break;
+		
+		}
+		
+		e.preventDefault();
+		return false;
+	    });//fim click .action
 	});//fim document ready
     }//fim complete
 });//fim yepnope
 
-
+var getIdUrl = function($a){
+    var text = $a.text(),
+	href = $a.attr("href"),
+	hrefArr = url.split("/");
+    return hrefArr[hrefArr.length-1];    
+}
 var createInput= function(type, name, value){    
     return "<input type='"+type+"' name='"+name+"' value='"+value+"' id='id_hidden' />";
 }    
@@ -161,8 +190,8 @@ $__actionDelete = "delete";
  * Caso o retorno seja apenas um registro,
  * coloco-o em um array para entrar no foreach.
  */
-$results = (count($results)===1) ? array($results) : $results;
-
+//$results = (count($results)===1) ? array($results) : $results;
+//var_dump($results);
 if(isset($results)): ?>
 <table id="listagem">
     <tr>
