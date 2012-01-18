@@ -1,34 +1,17 @@
 <?php
-class AppController extends Controller 
-{
 
-    var $components = array('Auth','Session');
-    var $current_user = false;
-    private $ext  = '.php';
-    
-    
-    function beforeFilter()
-    {
+class AppController extends Controller {
 
-        $this->Auth->loginAction = array('controller' => 'sessions', 'action' => 'create');
-        $this->Auth->loginRedirect = '/';
-        $this->Auth->logoutRedirect = '/';
-
-        $this->Auth->authenticate = array(
-            AuthComponent::ALL => array(
-                'fields' => array(
-                    'username' => 'email',
-                    'password' => 'password'),
-                'userModel' => 'Users.User'
-            ), 'Form'
-        );
-
-        $this->current_user = $this->Auth->user();
-    }
-
-    function beforeRender()
-    {
-        $this->set('current_user',$this->current_user );
-    }
+	private $ext  = '.php';
+	var $components = array('Auth');
+	 
+	function beforeFilter(){
+	    $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+	    $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
+	    $this->Auth->allow('display');
+	    $this->Auth->authorize = 'controller';
+	}
+	function isAuthorized() {
+	    return true;
+	}
 }
-?>
