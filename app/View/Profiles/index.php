@@ -97,7 +97,7 @@ yepnope({
 	    }); //fim form submit
 
 	    //Método para buscar um registro
-	    $listagem.on('click', 'a', function(e){
+	    $listagem.on('click', '.registry', function(e){
 		var $a = $(this);
 		var $button = $form.find(typeSubmit).end();
 
@@ -176,13 +176,13 @@ if(isset($results)): ?>
 	<tr>
 	    <td><?php echo $result[$__model]['id']; ?></td>
 	    <td>
-		    <?php echo $this->Html->link($result[$__model]['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
+		    <?php echo $this->Html->link($result[$__model]['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id']), array('class' => 'registry')); ?>
 	    </td>
 	<td>
-	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id'])); ?>
+	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id']), array('class' => 'action')); ?>
 	</td>
 	<td>
-	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id'])); ?>
+	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id']), array('class' => 'action')); ?>
 	</td>
 	</tr>
     <?php endforeach; ?>
