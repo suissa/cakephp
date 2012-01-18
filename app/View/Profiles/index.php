@@ -1,4 +1,5 @@
 <?php 
+$__controller = "profiles";
 echo $this->Html->script('yepnope.js');
 ?>
 <script type="text/javascript"> 
@@ -7,7 +8,7 @@ var __controller = "profiles";
 //var d = new Date();
 // console.log(d.getMinutes()+":"+d.getSeconds());
 yepnope({
-    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jqueryddd.min.js',
+    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
     callback: function (url, result, key) {
 	if (!window.jQuery){ 
 	    yepnope(baseUrl+'js/jquery.min.js');
@@ -127,7 +128,6 @@ var createInput= function(type, name, value){
 }    
 </script>
 <?php 
-$__controller = "profiles";
 $__action = "save";
 
 //if(isset($result)):
@@ -161,16 +161,24 @@ $results = (count($results)===1) ? array($results) : $results;
 if(isset($results)): ?>
 <table id="listagem">
 	<tr>
-		<th>Id</th>
-		<th>Profile</th>
+	    <th>Id</th>
+	    <th>Profile</th>
+	    <th>Alterar</th>
+	    <th>Deletar</th>
 	</tr>
 	<tbody>
 	<?php foreach ($results as $result): ?>
 	<tr>
-		<td><?php echo $result['Profile']['id']; ?></td>
-		<td>
-			<?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
-		</td>
+	    <td><?php echo $result['Profile']['id']; ?></td>
+	    <td>
+		    <?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
+	    </td>
+	<td>
+	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id'])); ?>
+	</td>
+	<td>
+	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id'])); ?>
+	</td>
 	</tr>
 	<?php endforeach; ?>
 	</tbody>
