@@ -53,11 +53,6 @@ class PagesController extends AppController {
 		$this->render(implode('/', $path));
 	}
 
-	function beforeFilter()
-	{
-		parent::beforeFilter();
-		$this->Auth->allow('display');
-	}
 }
 
 ?>
