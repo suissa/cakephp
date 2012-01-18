@@ -3,28 +3,42 @@ echo $this->Html->script('yepnope.js');
 ?>
 <script type="text/javascript"> 
 var baseUrl = '<?php echo Router::url('/', true) ?>';
-var __controller = "profile";
+var __controller = "profiles";
+//var d = new Date();
+// console.log(d.getMinutes()+":"+d.getSeconds());
 yepnope({
-    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
+    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7/jqueryddd.min.js',
     callback: function (url, result, key) {
 	if (!window.jQuery){ 
 	    yepnope(baseUrl+'js/jquery.min.js');
 	}
     },
     complete: function() {
+//var d = new Date();
+// console.log(d.getMinutes()+":"+d.getSeconds());
 	$ = jQuery;
 	//Coloque seu code jQuery aqui!!!!
 	$(document).ready(function() {
 	    //Variáveis do ambiente
-	    //Variáveis de elementos
-	    var $form = $("#form_cadastro");
-	    var $listagem = $("#listagem");
-	    //Variáveis de tipos
-	    var typeSubmit = "[type='submit']";
-	    var reset = "[type='reset']";
-	    //Variaveis com os nomes dos elementos do form
-	    var nameName = "[name='name']";
+		//Variáveis de elementos
+	    var  $form = $("#form_cadastro"),
+		$listagem = $("#listagem"),
+		//Variáveis de tipos
+		typeSubmit = "[type='submit']",
+		typeReset = "[type='reset']",
+		//Variaveis com os nomes dos elementos do form
+		nameName = "[name='name']",
+		nameID = "[name='id']"
+		;
 	    
+	    //Método para limpar o form e retirar o input hidden ID
+	    $form.on('click', typeReset, function(e){
+		var newButtonVal = "Inserir";
+		//Removo o input hidden ID
+		$(nameID).remove();
+		//Retorno o valor do botão para Inserir
+		$(typeSubmit).val(newButtonVal);
+	    });
 	    //Método para inserir registros
 	    $form.on('click', typeSubmit, function(e){		
 		var form = $(this).parents("form").attr("id");
@@ -35,14 +49,14 @@ yepnope({
 		var dataArr = $form.serializeArray(); 
 		var msgInsertTrue = "Profile inserido com sucesso!";
 		var msgInsertFalse = "Profile não pode ser inserido com sucesso!";
-		
+
 		var $lista = $("#listagem");
-//		console.log();
-//		e.preventDefault();
-//		return false;
-//		if(method == 'post'){
-//		    var name = $("[name='name']").val();
-//		}
+	//		console.log();
+	//		e.preventDefault();
+	//		return false;
+	//		if(method == 'post'){
+	//		    var name = $("[name='name']").val();
+	//		}
 		/*
 		 * Caso deseje mostrar os dados sem consulta-los,
 		 * guarde em vars seus valores que foram enviados.
@@ -51,7 +65,7 @@ yepnope({
 		 * o nome e o valor de cada campo, logo é só seguir
 		 * a sequencia dos campos.
 		 */
-		 
+
 		$.ajax({
 		    url: action,
 		    context: document.body,
@@ -59,11 +73,13 @@ yepnope({
 		    data: data,
 		    success: function(id){
 			if(id > 0){
-			    
-			    var name = dataArr[0].value;
-			    var linkUrl = baseUrl+__controller+"/view/"+id;
-			    var link = "<a href='"+linkUrl+"'>"+name+"</a>";
-			    var html = "<tr><td>"+id+"</td><td>"+link+"</td></tr>";
+
+			    var  name = dataArr[0].value,
+				linkUrl = baseUrl+__controller+"/view/"+id,
+				link = "<a href='"+linkUrl+"'>"+name+"</a>",
+				html = "<tr><td>"+id+"</td><td>"+link+"</td></tr>"
+				;
+				
 			    $lista.find("tbody").prepend(html).end();
 			    alert(msgInsertTrue);
 			    console.log(html);
@@ -76,40 +92,42 @@ yepnope({
 		e.preventDefault();
 		return false;
 	    }); //fim form submit
-	    
+
 	    //Método para buscar um registro
 	    $listagem.on('click', 'a', function(e){
 		var $a = $(this);
 		var $button = $form.find(typeSubmit).end();
-		
+
 		var newButtonVal = "Salvar";
 		//var oldButtonVal = $button.val();
-		
+
 		var text = $a.text();
 		var href = $a.attr("href");
 		var hrefArr = href.split("/");
 		var id = hrefArr[hrefArr.length-1];
-		
+
 		var inputID = createInput("hidden", "id", id);
 		//var inputHidden = createInput("hidden", "id", );
-//		var href = $a.attr("href");
-//		$button.val(newButtonVal);
+	//		var href = $a.attr("href");
+	//		$button.val(newButtonVal);
 		$form.find(nameName).val(text);
 		$form.find(typeSubmit).val(newButtonVal);
 		$form.append(inputID);
-		
+
 		e.preventDefault();
 		return false;
 	    });//fim #listagem a
-	});
-    }
-});   
+	});//fim document ready
+    }//fim complete
+});//fim yepnope
+
+
 var createInput= function(type, name, value){    
-    return "<input type='"+type+"' name='"+name+"' value='"+value+"' />";
+    return "<input type='"+type+"' name='"+name+"' value='"+value+"' id='id_hidden' />";
 }    
 </script>
 <?php 
-$__controller = "profile";
+$__controller = "profiles";
 $__action = "save";
 
 //if(isset($result)):
@@ -134,7 +152,7 @@ $__action = "save";
 </form>
 
 <?php 
-$__action = "view";
+$__actionView = "view";
 /*
  * Caso o retorno seja apenas um registro,
  * coloco-o em um array para entrar no foreach.
@@ -151,7 +169,7 @@ if(isset($results)): ?>
 	<tr>
 		<td><?php echo $result['Profile']['id']; ?></td>
 		<td>
-			<?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__action, $result['Profile']['id'])); ?>
+			<?php echo $this->Html->link($result['Profile']['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id'])); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>
