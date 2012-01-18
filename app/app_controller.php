@@ -3,17 +3,16 @@ class AppController extends Controller {
 
 	private $ext  = '.php';
 	var $components = array('Auth');
+	
 
 	function beforeFilter(){
 
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 		$this->Auth->loginRedirect = array('controller' => 'pages', 'display' => 'home');
 		$this->Auth->logoutRedirect = '/';
-		$this->Auth->allow('display');
-		
-		$this->Auth->authorize = 'controller';
-		
-		$this->Auth->userScope = array('Users.active' => 1);
+		$this->Auth->allow('display');		
+		$this->Auth->authorize = 'controller';		
+		$this->Auth->userScope = array('User.active' => 1);
 	}
 
 	function isAuthorized() {
@@ -23,6 +22,7 @@ class AppController extends Controller {
 			}
 		}
 		return true;
-   }
+   } 
+
 }
 ?>
