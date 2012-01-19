@@ -1,7 +1,7 @@
 <?php
     $__action = "save";
 ?>
-<form action="<?php echo $this->Html->url(array('controller' => $__controller,'action' => $__action), true);?>" method="post" id="form_cadastro">
+<form data-action="inserir" action="<?php echo $this->Html->url(array('controller' => $__controller,'action' => $__action), true);?>" method="post" id="form_cadastro">
     <input type="hidden" name="id" value="" />
 	<ul>
 	    <li>
