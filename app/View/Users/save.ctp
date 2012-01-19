@@ -11,7 +11,11 @@
         echo $this->Form->input('fname', array( 'label' => 'Nome' ) );
         echo $this->Form->input('lname', array( 'label' => 'Sobrenome' ) );
         echo $this->Form->input('email', array( 'label' => 'Email' ) );
-        echo $this->Form->input('profile_id', array( 'label' => 'Perfil' ) );
+        echo $this->Form->input('profile_id)', array(
+        	'label' => 'Perfil',
+            'options' => array(1, 2),
+            'empty' => '-----'
+        ));
         echo $this->Form->input('active', array( 'label' => 'Status' ) );
     ?>
     </fieldset>
