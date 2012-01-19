@@ -47,6 +47,7 @@
 		)
 		);
 		
+		
 		public function matchPasswords($data) {
 			if ($data['password'] == $this->data['User']['password_confirmation']) {
 				return true;
@@ -55,6 +56,15 @@
 			return false;
 		}
 		
+	
+		var $belongsTo = array(
+						'Profile' => array('className' => 'Profile',
+	                        'joinTable' => 'profiles',
+	                        'foreignKey' => 'profile_id',
+	                        'unique' => true
+            )
+  		  );
+		
 		
 		public function beforeSave() {
 			if (isset($this->data[$this->alias]['password'])) {
@@ -62,15 +72,6 @@
 			}
 			return true;
 		}
-		
-
-		
-
-		
-	
-
-	
-	
 
 }
 ?>
