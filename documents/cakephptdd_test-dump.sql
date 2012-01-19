@@ -39,7 +39,7 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `email`, `profile_id`, `active`, `created`, `modified`) 
-VALUES (1, 'gonow', 'gonow@123', 'Dev', 'Gonow', 'email@domail.com', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+VALUES (1, 'gonow', '55d5bc2cc74098c22a9ba6616bfdb413ade65c95', 'Dev', 'Gonow', 'email@domail.com', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `email`, `profile_id`, `active`, `created`, `modified`) 
-VALUES (2, 'suporte', 'gonow@123', 'Suporte', 'Gonow', 'email@domail.com', 2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+VALUES (2, 'suporte', '55d5bc2cc74098c22a9ba6616bfdb413ade65c95', 'Suporte', 'Gonow', 'email@domail.com', 2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');

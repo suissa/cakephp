@@ -1,21 +1,4 @@
-<h1>User</h1>
-
-<form action="./save/" method="post" id="form_cadastro">
-    
-	<ul>
-	    <li>
-		<label for="name">Username:</label>
-		<input type="" name="username" />
-	    </li>
-	    <li>
-		<label for="name">Email:</label>
-		<input type="" name="email" />
-	    </li>
-	    <li>
-		<input type="submit" value="enviar" />
-	    </li>	    
-	</ul>
-</form>
+<h1>Users</h1>
 
 <table>
 	<tr>
