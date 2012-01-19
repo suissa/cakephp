@@ -2,6 +2,14 @@
 class Profile extends AppModel{
  
  public $name = 'Profile';
-    public $displayField = 'name';
+        
+    var $hasMany = array(
+                'User' => array('className' => 'User',
+                            'joinTable' => 'users',
+                            'foreignKey' => 'profile_id',
+                            'unique' => true
+    )
+    );
+ 
 }
 ?>
