@@ -5,6 +5,7 @@ class UsersController extends AppController{
     public $ext;  
     var $helpers = array('Html', 'Form', 'Session' );
     var $components = array('Auth');
+   
 
 
 	function admin_index() {
@@ -39,7 +40,7 @@ class UsersController extends AppController{
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);
 		}
-		$groups = $this->User->Profile->find('list');
+		$profiles = $this->User->Profile->find('list');
 		$this->set(compact('profile'));
 	}
 
@@ -66,7 +67,7 @@ class UsersController extends AppController{
 				$this->Session->setFlash('O usuário não pode ser salvo. Por favor, tente de novo.');
 			}
 		}
-		$groups = $this->User->Profile->find('list');
+		$profiles = $this->User->Profile->find('list');
 		$this->set(compact('profile'));
 	}
 
@@ -88,7 +89,7 @@ class UsersController extends AppController{
 		//debug($this->User);		
     }
 
- /*      
+     
     function view($id = null) {
 	$this->User->id = $id;   
 	if($this->User->id){
@@ -130,7 +131,7 @@ class UsersController extends AppController{
 		}
     }
 
-*/
+
     
 }
 ?>
