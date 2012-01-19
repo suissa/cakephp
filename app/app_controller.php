@@ -2,27 +2,28 @@
 class AppController extends Controller {
 
 	private $ext  = '.php';
-	var $components = array('Auth');
+
+	public $components = array(
+	        'Session',
+	        'Auth' => array(
+	            'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
+	            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+		)
+	);
+	
+	function beforeFilter() {
+		$this->Auth->allow('index', 'view');
+	}
 	
 
-	function beforeFilter(){
-
-		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-		$this->Auth->loginRedirect = array('controller' => 'pages', 'display' => 'home');
-		$this->Auth->logoutRedirect = '/';
-		$this->Auth->allow('display');		
-		$this->Auth->authorize = 'controller';		
-		$this->Auth->userScope = array('User.active' => 1);
-	}
-
-	function isAuthorized() {
-		if (isset($this->params[Configure::read('Routing.admin')])) {
-			if ($this->Auth->user('profile_id') != 1) {
-				return false;
-			}
-		}
-		return true;
-   } 
+// 	function isAuthorized() {
+// 		if (isset($this->params[Configure::read('Routing.admin')])) {
+// 			if ($this->Auth->user('profile_id') != 1) {
+// 				return false;
+// 			}
+// 		}
+// 		return true;
+//    } 
 
 }
 ?>
