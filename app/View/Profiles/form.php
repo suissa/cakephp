@@ -1,8 +1,5 @@
 <?php
-
-$__controller = "profiles";
-$__model = (isset($result)) ? key($result) : "Profile";
-$__action = "save";
+    $__action = "save";
 ?>
 <form action="<?php echo $this->Html->url(array('controller' => $__controller,'action' => $__action), true);?>" method="post" id="form_cadastro">
     <input type="hidden" name="id" value="" />
@@ -13,7 +10,7 @@ $__action = "save";
 	    </li>
 	    <li>
 		<input type="reset" value="Limpar" />
-		<input type="submit" value="Salvar" />
+		<input type="submit" value="Inserir" />
 	    </li>
 	    
 	</ul>

@@ -9,3 +9,8 @@
     $__actionEdit = "edit";
     $__actionDelete = "delete";
 ?>
+<script type="text/javascript"> 
+var baseUrl = '<?php echo Router::url('/', true) ?>';
+var __controller = "profiles";
+
+</script>
