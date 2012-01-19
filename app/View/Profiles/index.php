@@ -1,6 +1,5 @@
 <?php 
-$__controller = "profiles";
-$__model = (isset($result)) ? key($result) : "Profile";
+include "config.php";
 
 echo $this->Html->script('yepnope.js');
 ?>
@@ -119,17 +118,16 @@ yepnope({
 	    //Método que gerencia as ações nos links
 	    $listagem.on('click', '.action', function(e){
 		e.preventDefault();
-		alert($(this).text().toLowerCase());
 		
 		var action = $(this).text().toLowerCase(),
 		    $a = $(this),
 		    id = getIdUrl($a),
-		    inputID = createInput("hidden", "id", id)
+		    inputID = createInput("hidden", "id", id),
+		    text = $a.parents("tr").find(".registry").text();
 		;
-		
 		switch(action){
-		    case "alterar":
-			
+		    case "alterar":	
+			var newButtonVal = "Salvar";	
 			$form.find(nameName).val(text);
 			$form.find(typeSubmit).val(newButtonVal);
 			$form.append(inputID);
@@ -151,7 +149,7 @@ yepnope({
 var getIdUrl = function($a){
     var text = $a.text(),
 	href = $a.attr("href"),
-	hrefArr = url.split("/");
+	hrefArr = href.split("/");
     return hrefArr[hrefArr.length-1];    
 }
 var createInput= function(type, name, value){    
@@ -159,6 +157,7 @@ var createInput= function(type, name, value){
 }    
 </script>
 <?php 
+echo $this->element("menu.php");
 $__action = "save";
 
 //if(isset($result)):
@@ -192,29 +191,6 @@ $__actionDelete = "delete";
  */
 //$results = (count($results)===1) ? array($results) : $results;
 //var_dump($results);
-if(isset($results)): ?>
-<table id="listagem">
-    <tr>
-	<th>Id</th>
-	<th>Profile</th>
-	<th>Alterar</th>
-	<th>Deletar</th>
-    </tr>
-    <tbody>
-    <?php foreach ($results as $result): ?>
-	<tr>
-	    <td><?php echo $result[$__model]['id']; ?></td>
-	    <td>
-		    <?php echo $this->Html->link($result[$__model]['name'], array('controller' => $__controller, 'action' => $__actionView, $result['Profile']['id']), array('class' => 'registry')); ?>
-	    </td>
-	<td>
-	    <?php echo $this->Html->link("alterar", array('controller' => $__controller, 'action' => $__actionEdit, $result[$__model]['id']), array('class' => 'action')); ?>
-	</td>
-	<td>
-	    <?php echo $this->Html->link("deletar", array('controller' => $__controller, 'action' => $__actionDelete, $result[$__model]['id']), array('class' => 'action')); ?>
-	</td>
-	</tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-<?php endif; ?>
+if(isset($results)): 
+    include "listagem.php";
+endif; ?>

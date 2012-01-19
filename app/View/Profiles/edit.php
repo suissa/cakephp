@@ -1,8 +1,9 @@
 <?php 
 //Edit depende da var $result
 if(isset($result)){
-    $__controller = "profiles";
-    $__model = (isset($result)) ? key($result) : "";
+include "config.php";
+//    $__controller = "profiles";
+//    $__model = key($result);
     
 //    Inserção do yepnope para carregar js e css assincronamente
     echo $this->Html->script('yepnope.js');
@@ -131,6 +132,7 @@ var createInput= function(type, name, value){
 }    
 </script>
 <?php 
+echo $this->element("menu.php");
 $__action = "save";
 ?>
 
@@ -150,12 +152,6 @@ $__action = "save";
 	</ul>
 </form>
 
-<?php 
-$__actionView = "view";
-$__actionEdit = "edit";
-$__actionDelete = "delete";
-
-    ?>
 <table id="listagem">
     <tr>
 	<th>Id</th>

@@ -102,5 +102,13 @@ class ProfilesController extends AppController{
 	$this->render('form.php');
 	
     }
+    public function listTabelas(){
+	$this->autoRender = false;		
+	$this->layout = 'ajax';
+	$sql = "SHOW TABLES";
+	$lista = $this->Profile->query($sql);
+	var_dump($lista);
+	$this->set('menu', $lista);
+    }
 }
 ?>
