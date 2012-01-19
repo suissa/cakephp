@@ -6,16 +6,26 @@ class ProfilesController extends AppController{
     
     var $components = array('RequestHandler');
     
+    private function findAll(){
+	return $this->Profile->find('all');
+    }
+    
+    private function redirectIndex(){
+	return $this->redirect(array('controller' => strtolower($this->name), 'action' => 'index'));
+    }
+    
+    
     public function index(){
 //	$posts = $this->Profile->find('all');
 	
-	$this->set('results', $this->Profile->find('all'));
+	$this->set('results', $this->findAll());
 //	$this->set(compact('profile'));
 	$this->render('index.php');
     }
 
 
     function beforeFilter () {
+	//testar se o cara esta logado sempre!!!
 	if($this->RequestHandler->isAjax()){
 	}
     }
@@ -41,13 +51,13 @@ class ProfilesController extends AppController{
     //		
     //	    }
 	    }
-	    $this->redirect(array('controller' => strtolower($this->name), 'action' => 'index'));
+	    $this->redirectIndex();
 	}
 	
     }
     
     public function view($id = null) {
-	$this->Profile->id = $id;   
+	$this->Profile->id = (int)$id;   
 	if($this->Profile->id){
 	    $this->set('results', $this->Profile->read());
 	}
@@ -58,7 +68,7 @@ class ProfilesController extends AppController{
     }
     
     public function edit($id = null){
-	$this->Profile->id = $id;   
+	$this->Profile->id = (int)$id;   
 	if($this->Profile->id){
 	    $this->set('result', $this->Profile->read());
 	}
@@ -72,17 +82,33 @@ class ProfilesController extends AppController{
 //	}
 	$this->render('edit.php');
     }
-    public function delete($id = null){
-	if(is_int($id)){
-	    if($this->Profile->delete($id))
+    public function delete($id = null){	
+	$this->Profile->id = (int)$id;   
+	if(is_int($this->Profile->id)){
+	    if($this->Profile->delete($this->Profile->id))
 		$this->Session->setFlash('Deletado com sucesso!');
-	    $this->redirect(array('controller' => 'profile','action' => 'index'));
 	}
 	elseif(is_string($id)){
 	    //criar funcao de deletar pelo valor do name
 	}
+	$this->set('results', $this->findAll());
 	$this->render('delete.php');
+//	$this->redirectIndex();
     }
     
+    
+    //Testes
+    public function renderForm(){
+	$this->render('form.php');
+	
+    }
+    public function listTabelas(){
+	$this->autoRender = false;		
+	$this->layout = 'ajax';
+	$sql = "SHOW TABLES";
+	$lista = $this->Profile->query($sql);
+	var_dump($lista);
+	$this->set('menu', $lista);
+    }
 }
 ?>
