@@ -1,17 +1,16 @@
 <?php
 class UserFixture extends CakeTestFixture {
 
-		public $fixtures = array('app.user')
-      //public $useDbConfig = 'test';
+		public $fixtures = array('app.user');
 		public $fields = array(
 		'id' => array('type' => 'integer', 'key' => 'primary'),
-		'username' => array('type' => 'string', 'length' => 255, 'null' => false),
+		'username' => array('type' => 'string', 'length' => 15, 'null' => false),
 		'password' => 'text',
 		'fname' => 'text',
 		'lname' => 'text',
 		'email' => 'text',
 		'profile_id' => array('type' => 'integer', 'default' => '2', 'null' => false),
-		'active' => => array('type' => 'integer', 'default' => '0', 'null' => false),
+		'active' => array('type' => 'integer', 'default' => '0', 'null' => false),
 		'created' => 'datetime',
 		'modiefied' => 'datetime'
       );
