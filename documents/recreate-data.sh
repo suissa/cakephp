@@ -3,7 +3,7 @@
 function recreate()
 {
 	echo -e "\033[1m> Dropping database '$1'...\033[0m\n"
-	mysql -u root -p -e "drop database $1"
+	mysql -u root -p -e "drop database if exists $1"
 
 	echo -e "\033[1m> Creating database '$1'...\033[0m\n"
 	mysql -u root -p -e "create database $1 character set utf8"
