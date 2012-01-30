@@ -1,3 +1,4 @@
+TESTE
 <?php foreach($usuarios as $usuario): ?>
 			
 			<strong>Nome: </strong><?php echo $usuario['Usuario']['nome'] ?></span>

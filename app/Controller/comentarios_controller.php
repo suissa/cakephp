@@ -3,7 +3,8 @@
 class ComentariosController extends AppController{
     var $name = 'Comentarios';
 
-    var $uses = array('Comentarios');
+    var $uses = array('Comentario'); 
+    public $ext=".php";    
 
     function index(){
 	     $usuarios = $this->Comentario->find('all');

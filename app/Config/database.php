@@ -70,14 +70,17 @@ class DATABASE_CONFIG {
 		//'encoding' => 'utf8',
 	);
 	var $mongo = array(
-		'driver' => 'mongodb.mongodbSource',
-		'database' => 'driver',
-		'host' => 'ds029827.mongolab.com',
-		'port' => '29827',
+	    'driver' => 'mongodb.mongodbSource',
+	    'database' => 'driver',
+	    'host' => 'localhost',
+	    'port' => 27017,
+	    /*
 		'login' => 'rodrigo',
 		'password' => 'sktbording',
 		'database' => 'teste'
 		//'encoding' => 'utf8',
+	     
+	     */
 	);
 	public $test = array(
 		'datasource' => 'Database/Mysql',
