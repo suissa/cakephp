@@ -63,7 +63,7 @@ class ProfilesController extends AppController{
     //		
     //	    }
 	    }
-	    $this->redirectIndex();
+	    $this->__redirectIndex();
 	}
 	
     }
@@ -101,15 +101,15 @@ class ProfilesController extends AppController{
 	$this->render("edit.php");
     }
     public function delete($id = null){	
-	$this->Profile->id = (int)$id;   
-	if(is_int($this->Profile->id)){
+	$this->Profile->id = $id;   
+	if(!is_null($this->Profile->id)){
 	    if($this->Profile->delete($this->Profile->id))
 		$this->Session->setFlash("Deletado com sucesso!");
 	}
 	elseif(is_string($id)){
 	    //criar funcao de deletar pelo valor do name
 	}
-	$this->set("results", $this->findAll());
+	$this->set("results", $this->_findAll());
 	$this->render("delete.php");
 //	$this->redirectIndex();
     }

@@ -53,23 +53,33 @@ yepnope({
 	    $listagem.on('click', '.action', function(e){
 		e.preventDefault();
 		
-		var $a	    = $(this),
-		    action  = $a.text().toLowerCase(),
-		    id	    = getIdUrl($a),
-		    inputID = createInput("hidden", "id", id),
-		    text    = $a.parents("tr").find(".registry").text()
+		var $a			= $(this),
+		    action		= $a.text().toLowerCase(),
+		    id			= getIdUrl($a),
+		    actionController	= getActionUrl($a),
+		    inputID		= createInput("hidden", "id", id),
+		    text		= $a.parents("tr").find(".registry").text(),
+		    newAction		=  baseUrl.__controller.actionController
 		    ;
+		    
 		switch(action){
 		    case "alterar":	
 			var newButtonVal = "Salvar";	
-			$form.attr("data-action", action);
-			$form.find(nameName).val(text);
-			$form.find(typeSubmit).val(newButtonVal);
-			$form.append(inputID);
+//			$form.attr("data-action", action);
+//			$form.attr("action", newAction);
+//			$form.find(nameName).val(text);
+//			$form.find(typeSubmit).val(newButtonVal);
+//			$form.append(inputID);
+			makeAction($form, action, newAction, newButtonVal,inputID);
 			break;
 		    case "deletar":
-			$form.attr("data-action", action);
-			alert();
+			var newButtonVal = "Deletar";	
+//			$form.attr("data-action", action);
+//			$form.attr("action", newAction);
+//			$form.find(nameName).val(text);
+//			$form.find(typeSubmit).val(newButtonVal);
+//			$form.append(inputID);
+			makeAction($form, action, newAction, newButtonVal,inputID);
 			break;
 		    default: //Inserir
 			return false;
@@ -107,35 +117,48 @@ yepnope({
 		 * o nome e o valor de cada campo, logo é só seguir
 		 * a sequencia dos campos.
 		 */
-
+		console.log(url);
+		console.log(data);
+		
+		e.preventDefault();
+		return false;
 		$.ajax({
 		    url: url,
 		    context: document.body,
 		    type: type,
 		    data: data,
-		    success: function(id){
-			if(id > 0){ //if action save
-			    if(action == "inserir"){
-				var name	= dataArr[0].value,
-				    linkUrl = baseUrl+__controller+"/view/"+id,
-				    link	= "<a href='"+linkUrl+"'>"+name+"</a>",
-				    html	= "<tr><td>"+id+"</td><td>"+link+"</td></tr>"
+		    success: function(id){			
+			switch(action){
+			    case "inserir":	
+				if(id > 0){//sucess
+				    var name	= dataArr[0].value,
+					linkUrl = baseUrl+__controller+"/view/"+id,
+					link	= "<a href='"+linkUrl+"'>"+name+"</a>",
+					html	= "<tr><td>"+id+"</td><td>"+link+"</td></tr>"
 				    ;
 
-				$lista.find("tbody").prepend(html).end();
-				alert(msgInsertTrue);
-			    }
-			    else if(action == "alterar"){
-				alert(msgUpdateTrue);
-			    }
-			}
-			else {
-			    if(action == "inserir"){
-				alert(msgInsertFalse);
-			    }
-			    else if(action == "alterar"){
-				alert(msgUpdateFalse);
-			    }
+				    $lista.find("tbody").prepend(html).end();
+				    alert(msgInsertTrue);
+				} else { //error
+				    alert(msgInsertFalse);
+				}
+				break;
+			    case "alterar":
+				if(id > 0){//sucess
+				    alert(msgUpdateTrue);
+				} else { //error
+				    alert(msgUpdateFalse);
+				}
+				break;
+			    case "deletar":
+				if(id > 0){//sucess
+				    alert(msgDeleteTrue);
+				} else { //error
+				    alert(msgDeleteFalse);
+				}
+				break;
+			    default: 
+				return false;
 			}
 		    }
 		});
@@ -153,9 +176,18 @@ var getIdUrl = function($a){
 	hrefArr = href.split("/");
     return hrefArr[hrefArr.length-1];    
 }
+var getActionUrl = function($a){
+    var text = $a.text(),
+	href = $a.attr("href"),
+	hrefArr = href.split("/");
+    return hrefArr[hrefArr.length-2];    
+}
 var createInput = function(type, name, value){    
     return "<input type='"+type+"' name='"+name+"' value='"+value+"' id='id_hidden' />";
 }    
 var sendData = function(action){
+    
+}
+var makeAction = function($form, action, newAction, newButtonVal,inputID){
     
 }
