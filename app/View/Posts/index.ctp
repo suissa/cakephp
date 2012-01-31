@@ -1,21 +1,12 @@
-<h1>Blog posts</h1>
-<table>
-	<tr>
-		<th>Id</th>
-		<th>Título</th>
-		<th>Created</th>
-	</tr>
-	
-	<?php echo $this->Html->link('Add Comentário', array('controller' => 'posts', 'action' => 'add')); ?>
+<?php echo $this->Html->link('Adicionar comentário', 'add'); ?>
+<br>
+<br>
+<?php foreach($results as $result): ?>
 
-	<?php foreach ($posts as $post): ?>
-	<tr>
-		<td><?php echo $post['Post']['id']; ?></td>
-		<td>
-			<?php echo $this->Html->link($post['Post']['texto'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
-		</td>
-		<td><?php echo $post['Post']['created']; ?></td>
-	</tr>
-	<?php endforeach; ?>
+	id: <?php echo $result['Post']['_id']; ?> [<?php echo $this->Html->link('edit','edit/'.$result['Post']['_id']); ?>] [<?php echo $this->Html->link('delete','delete/'.$result['Post']['_id']); ?>]<br>
+	titulo: <?php echo $result['Post']['titulo']; ?><br>
+	texto: <?php echo $result['Post']['texto']; ?><br>
+	autor: <?php echo $result['Post']['autor']; ?><br>
 
-</table>
+<hr>
+<?php endforeach; ?>
