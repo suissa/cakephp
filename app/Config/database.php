@@ -59,6 +59,7 @@
  */
 class DATABASE_CONFIG {
 
+
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -70,6 +71,7 @@ class DATABASE_CONFIG {
 		//'encoding' => 'utf8',
 	);
 
+
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -80,4 +82,20 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+
+
+	public $mongo = array(
+        'datasource' => 'Mongodb.MongodbSource',  //cakephp2.0 style
+        'host' => 'localhost',
+        'database' => 'ftd',
+        'port' => 27017,
+//      'prefix' => '',
+//      'persistent' => 'true',
+//      'login' => '', 
+//      'password' => '',
+//		'replicaset' => array('host' => 'mongodb://loginid:password@localhost:27021,localhost:27022/blog',
+//						'options' => array('replicaSet' => 'myRepl')),
+    );
+
+
 }
