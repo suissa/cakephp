@@ -54,6 +54,9 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
+// Alteração das regras de inflections
+include dirname(__FILE__) . DS . 'inflections.php';
+
 
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
